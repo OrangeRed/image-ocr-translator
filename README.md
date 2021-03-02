@@ -25,9 +25,9 @@ touch .env
 
 Open .env file with a text editor and add the following:
 ```
-CONNECTION_URL=[MongoDB Database URI]
+CONNECTION_URL=[MongoDB Database URI - Posted in MS Teams]
 PORT=5000
-TOKEN_SECRET=[Token Secret]
+TOKEN_SECRET=[Token Secret - Posted in MS Teams]
 ```
 
 <br />
