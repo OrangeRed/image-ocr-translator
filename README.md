@@ -27,6 +27,7 @@ Open .env file with a text editor and add the following:
 ```
 CONNECTION_URL=[MongoDB Database URI]
 PORT=5000
+TOKEN_SECRET=[Token Secret]
 ```
 
 <br />
