@@ -11,8 +11,6 @@ npm start
 
 ## API Usage
 
-<br/>
-
 ### Register
 Send user credentials to create an account.
 
