@@ -1,5 +1,6 @@
 import express from 'express';
-import verifyToken from './verifyToken.js'
+import verifyToken from './verifyToken.js';
+import upload from '../services/imageUpload.js';
 
 const router = express.Router();
 
@@ -11,6 +12,17 @@ router.get('/', verifyToken, (req, res) => {
     }
   });
   
+});
+
+router.post('/upload', verifyToken, (req, res) => {
+  upload(req, res, (err) => {
+
+    // File upload error checks
+    if (err) return res.status(400).send(err.message);
+    if (!req.file) return res.status(400).send("No file provided");
+
+    res.send('Successfully uploaded ' + req.file.originalname);
+  });
 });
 
 export default router;
