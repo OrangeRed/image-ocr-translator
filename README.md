@@ -2,6 +2,8 @@
 
 Upload Images / PDF files and allow the user to look up specific definitions or words.
 
+<br/>
+
 ## Installation
 
 To access the project, run the following:
@@ -24,10 +26,14 @@ PORT = 5000
 TOKEN_SECRET = zY1hgypILYUw870JWd4wV7TAIMU2K2V9ZYKd9N266LpfFt4TmXEafOtlAOQZWlrMCL
 ```
 
+<br/>
+
 ## Running the Project
 ```
 npm start
 ```
+
+<br/>
 
 ## Notes
 
