@@ -24,14 +24,10 @@ PORT = 5000
 TOKEN_SECRET = zY1hgypILYUw870JWd4wV7TAIMU2K2V9ZYKd9N266LpfFt4TmXEafOtlAOQZWlrMCL
 ```
 
-<br />
-
 ## Running the Project
 ```
 npm start
 ```
-
-<br />
 
 ## Notes
 
