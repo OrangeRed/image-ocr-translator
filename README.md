@@ -20,7 +20,7 @@ Configure environment variable:<br />
 Rename `.env.example` file to `.env` and replace all text in brackets (inclusive). It should look something like this:
 ```
 CONNECTION_URL = mongodb+srv://admin:password@cluster0.8fhqr.mongodb.net/<dbname>?retryWrites=true&w=majority
-PORT=5000
+PORT = 5000
 TOKEN_SECRET = zY1hgypILYUw870JWd4wV7TAIMU2K2V9ZYKd9N266LpfFt4TmXEafOtlAOQZWlrMCL
 ```
 
