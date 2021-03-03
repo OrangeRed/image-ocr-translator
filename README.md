@@ -32,6 +32,7 @@ TOKEN_SECRET = zY1hgypILYUw870JWd4wV7TAIMU2K2V9ZYKd9N266LpfFt4TmXEafOtlAOQZWlrMC
 ```
 npm start
 ```
+Confirm the server is running by visiting `http://localhost:5000` in your web browser.
 
 <br/>
 
