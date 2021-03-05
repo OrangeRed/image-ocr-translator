@@ -1,4 +1,20 @@
-console.log("Sneaky Bugger aren't ya?");
+// Buttons
+const uploadBtn = document.getElementById('uploadBtn');
+const snipBtn = document.getElementById('snipBtn');
+const translateBtn = document.getElementById('translateBtn');
+
+// Button Event Listeners
+uploadBtn.addEventListener('click', () => {
+  console.log("uploaded");
+});
+
+snipBtn.addEventListener('click', () => {
+  console.log("snipped");
+});
+
+translateBtn.addEventListener('click', () => {
+  console.log("translated");
+});
 
 // Authentication API call examples 
 
