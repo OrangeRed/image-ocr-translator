@@ -11,26 +11,37 @@
 <body>
     <div class="div-container">
         <div class="text-container">
-            <div class="text-item raw-text" id="rawText">
-                <h1>Raw Text</h1>
-                This is an example sentence <br><br>
-                これは例文です <br><br>
-                Это пример предложения <br><br>
-                Esta es una frase de ejemplo <br><br>
-                Questa è una frase di esempio <br><br>
+            <div class="text-item raw-text" id="raw-text">
+                This is an example sentence <br>
+                これは例文です <br>
+                Это пример предложения <br>
+                Esta es una frase de ejemplo <br>
+                Questa è una frase di esempio <br>
                 这是一个例句
             </div>
-            <div class="text-item translated-text">
-                <h1>Translated Text</h1>
+            <div class="text-item translate-container">
+                <div class="translate-stage" id="translate-stage">
+                    <input type="text" autocomplete="off" name="translate-input" id="translate-input">
+                    <select class="lang-options" id="lang-options">
+                        <option value="ar">AR</option>
+                        <option value="zh">ZH</option>
+                        <option value="fr">FR</option>
+                        <option value="de">DE</option>
+                        <option value="it">IT</option>
+                        <option value="pt">PT</option>
+                        <option value="ru">RU</option>
+                        <option value="es">ES</option>
+                    </select>
+                </div>
+                <ul class="translated-text" id="translated-text"></ul>
             </div>
             <div class="btn-container">
-                <button class="btn" id="uploadBtn">Upload</button>
-                <button class="btn" id="snipBtn">Snip</button>
-                <button class="btn" id="translateBtn">Translate</button>
+                <button class="btn" id="upload-btn">Upload</button>
+                <button class="btn" id="snip-btn">Snip</button>
             </div>
         </div>
         <div class="media-container">
-            <img class="div-item media-space" id="mediaSpace" src="../img/test-img.jpg"></img>
+            <img class="div-item media-space" id="mediaSpace" src="img/test-img.jpg"></img>
         </div>
     </div>
 
