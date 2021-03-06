@@ -7,7 +7,6 @@ import authRoute from './routes/auth.js';
 import postRoute from './routes/posts.js';
 import translateRoute from './routes/translate.js';
 
-
 dotenv.config();
 
 const app = express();
