@@ -23,6 +23,7 @@ app.use(`/${ endpoint }/posts`, postRoute);
 
 // Handles any requests that don't match
 app.get('*', (_, res) => {
+  // TODO: Add a 404 not found page
   res.sendFile('client/index.html', { root: '.' });
 });
 

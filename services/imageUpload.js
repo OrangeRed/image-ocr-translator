@@ -1,6 +1,7 @@
 import multer from 'multer';
 import fs from 'fs';
 
+// TODO: Move to separate file
 // https://stackoverflow.com/a/2117523
 const uuidv4 = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
