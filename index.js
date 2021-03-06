@@ -87,6 +87,7 @@ app.get('/api/translate/libre/:source/:target/:input', async (request, response)
   });
 
   response.json(libre);
+});
 
 // Handles any requests that don't match
 app.get('*', (_, res) => {
