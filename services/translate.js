@@ -10,7 +10,7 @@ translator.get('/google/:source/:target/:input', async (request, response) => {
     const target = request.params.target;
     const input = request.params.input;
 
-    const google_translate_url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${source}&tl=${target}&dt=t&q=${input}`;
+    const google_translate_url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${source}&tl=${target}&dt=t&q=${input}.`;
     const google_translate = await fetch(encodeURI(google_translate_url))
     .then(async response => {
         const google_translate_json = await response.json();
@@ -31,7 +31,6 @@ translator.get('/myMemory/:source/:target/:input', async (request, response) => 
     const target = request.params.target;
     const input = request.params.input;
 
-    // myMemory API call
     const myMemory_url = `https://api.mymemory.translated.net/get?q=${input}&langpair=${source}|${target}`;
     const myMemory = await fetch(encodeURI(myMemory_url))
     .then(async response => {
