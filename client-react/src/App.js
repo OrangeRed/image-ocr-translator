@@ -4,6 +4,10 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { lightTheme, darkTheme } from './styles/Themes';
 
+import RawText from './components/rawText/RawText';
+import MediaDisplay from './components/mediaDisplay/MediaDisplay';
+import TranslatedText from './components/translatedText/TranslatedText';
+
 
 class App extends Component {
 
@@ -23,7 +27,9 @@ class App extends Component {
         <>
         <GlobalStyles />
           <div className="App">
-            <h1>Hello World</h1>
+            <RawText />
+            <TranslatedText />
+            <MediaDisplay />
           </div>
         </>
       </ThemeProvider>
