@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import authRoute from './routes/auth.js';
 import postRoute from './routes/posts.js';
-import translateRoute from './routes/translate.js';
+import translateRoute from './services/translate.js';
 
 dotenv.config();
 
