@@ -13,6 +13,7 @@ dotenv.config();
 const app = express();
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
+const GOOGLE_TRANSLATE_API_KEY = process.env.GOOGLE_TRANSLATE_API_KEY || "SAMPLE_GOOGLE_TRANSLATE_API_KEY";
 
 // Middleware
 app.use(express.static('client'));
