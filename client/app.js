@@ -137,8 +137,6 @@ async function handleTranslateRequest(e) {
     return;
   }
   translatedText.textContent = '';
-  // const dict = document.createElement('h2');
-  // const entry = document.createElement('li');
 
   // Server call of google translate
   const google_response = await fetch(`/api/translate/google/${source}/${target}/${input}`)
