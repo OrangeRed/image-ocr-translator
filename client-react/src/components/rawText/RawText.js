@@ -7,7 +7,14 @@ const RawText = ({
 
   return (
     <StyledRawText {...props}>
-      <h1>Raw Text Section</h1>
+      {`
+        This is an example sentence
+        これは例文です
+        Это пример предложения
+        Esta es una frase de ejemplo
+        Questa è una frase di esempio
+        这是一个例句
+      `}
     </StyledRawText>
   );
 };

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledMediaDisplay = styled.div`
-  background: blue;
+  .media-space {
+    padding-left: 10px;
+  }
 `;

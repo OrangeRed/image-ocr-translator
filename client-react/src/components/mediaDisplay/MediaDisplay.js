@@ -7,7 +7,12 @@ const MediaDisplay = ({
 
   return (
     <StyledMediaDisplay {...props}>
-      <h1>Media Display Section</h1>
+      <img 
+        class="div-item media-space" 
+        id="mediaSpace" 
+        src="/test-img.jpg"
+        alt="Media Display" 
+      />
     </StyledMediaDisplay>
   );
 };
