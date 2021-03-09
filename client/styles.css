@@ -1,3 +1,11 @@
+.noHover{
+    pointer-events: none;
+}
+
+body {
+    background: #444;
+}
+
 .div-container {
     display: flex;
     justify-content: center;
@@ -15,16 +23,42 @@
 
 .text-item {
     width: 100%;
+    min-height: 45%;
     margin-bottom: 10px;
     background-color: #dfdfdf;
+    line-height: 2em;
 }
 
 .raw-text {
-    min-height: 45%;
+    padding: 12px 20px;
+}
+
+.translate-stage {
+    display: flex;
+}
+
+input[name=translate-input] {
+    width: 85%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border-color: #dfdfdf;
+}
+
+.lang-options {
+    width: 15%;
+    height: stretch;
+    border-color: #dfdfdf;
 }
 
 .translated-text {
-    min-height: 45%;
+    padding: 0px 20px;
+    line-height: 1.5em;
+}
+
+.translated-text li {
+    padding: 0px 20px;
+    list-style-position: inside;
+    word-wrap: break-word;
 }
 
 .btn-container {

@@ -1,7 +1,6 @@
 // Buttons
-const uploadBtn = document.getElementById('uploadBtn');
-const snipBtn = document.getElementById('snipBtn');
-const translateBtn = document.getElementById('translateBtn');
+const uploadBtn = document.getElementById('upload-btn');
+const snipBtn = document.getElementById('snip-btn');
 
 // Button Event Listeners
 uploadBtn.addEventListener('click', () => {
@@ -12,9 +11,6 @@ snipBtn.addEventListener('click', () => {
   console.log("snipped");
 });
 
-translateBtn.addEventListener('click', () => {
-  console.log("translated");
-});
 
 // Authentication API call examples 
 
@@ -123,4 +119,63 @@ function handlePostsFormSubmit(event) {
       postsResponse.innerHTML = errorMessage;
     })
   })
+}
+
+// Translate
+const translateInput = document.getElementById('translate-input');
+const sourceInput = document.querySelector('#lang-options');
+const translatedText = document.getElementById('translated-text');
+
+translateInput.addEventListener('change', handleTranslateRequest);
+sourceInput.addEventListener('change', handleTranslateRequest);
+
+async function handleTranslateRequest(e) {
+  const input = translateInput.value;
+  const source = sourceInput.value;
+  const target = "en";
+  if (input === ''){
+    return;
+  }
+  translatedText.textContent = '';
+  // const dict = document.createElement('h2');
+  // const entry = document.createElement('li');
+
+  // Server call of google translate
+  const google_response = await fetch(`/api/translate/google/${source}/${target}/${input}`)
+  .then(response => {
+    const google_json = response.json()
+    .then(json_response => {
+      displayTranslateResult(json_response, "Google");
+    });
+  });
+
+  // Server call of myMemory
+  const myMemory_response = await fetch(`/api/translate/myMemory/${source}/${target}/${input}`)
+  .then(response => {
+    const myMemory_json = response.json()
+    .then(json_response => {
+      displayTranslateResult(json_response, "myMemory");
+    });
+  });
+  
+  // Server call of Libre 
+  const libre_response = await fetch(`/api/translate/libre/${source}/${target}/${input}`)
+  .then(response => {
+    const libre_json = response.json()
+    .then(json_response => {
+      displayTranslateResult(json_response, "Libre");
+    });
+  });
+}
+
+// Translate Helper function
+function displayTranslateResult(text, loc) {
+  const dict = document.createElement('h2');
+  dict.textContent = `${loc}: `;
+  translatedText.appendChild(dict);
+  if (text != '') {
+    const entry = document.createElement('li');
+    entry.textContent = text;
+    translatedText.appendChild(entry);
+  }
 }
