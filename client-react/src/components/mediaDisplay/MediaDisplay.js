@@ -1,18 +1,23 @@
 import React from 'react';
 import { StyledMediaDisplay } from './MediaDisplay.styled';
 
-const MediaDisplay = ({ 
+const MediaDisplay = ({
+  topPadding,
+  media, 
   ...props 
 }) => {
 
   return (
-    <StyledMediaDisplay {...props}>
-      <img 
-        class="div-item media-space" 
-        id="mediaSpace" 
-        src="/test-img.jpg"
-        alt="Media Display" 
-      />
+    <StyledMediaDisplay topPadding={topPadding} {...props}>
+      <div className="media-container">
+        {media.map((asset, index) =>
+          <img 
+            src={asset} 
+            key={index} 
+            alt={`media-${index}`}
+          />
+        )}
+      </div>
     </StyledMediaDisplay>
   );
 };

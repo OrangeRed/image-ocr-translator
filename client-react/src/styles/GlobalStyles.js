@@ -16,13 +16,13 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   .App {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px 0 24px;
+    height: 100%;
   }
 
   .filler {
+    padding-top: 68px;
     height: 200vh;
-    background: white;
+    background: pink;
+    width: 70%;
   }
 `;
