@@ -7,7 +7,6 @@ import { lightTheme, darkTheme } from './styles/Themes';
 import RawText from './components/rawText/RawText';
 import MediaDisplay from './components/mediaDisplay/MediaDisplay';
 import TranslatedText from './components/translatedText/TranslatedText';
-import Buttons from './components/buttons/Buttons';
 
 
 class App extends Component {
@@ -18,6 +17,10 @@ class App extends Component {
     this.state = {
       isDarkMode: false
     }
+  }
+
+  handleUpload = (text) => {
+    console.log(text);
   }
 
   render() {
@@ -31,8 +34,10 @@ class App extends Component {
             <div className="div-container">
               <div className="text-container">
                 <RawText className="text-item raw-text" />
-                <TranslatedText className="text-item translate-container" />
-                <Buttons className="btn-container" />
+                <TranslatedText 
+                  className="text-item translate-container"
+                  handleUploadButton={ this.handleUpload } 
+                />
               </div>
               <MediaDisplay />
             </div>
