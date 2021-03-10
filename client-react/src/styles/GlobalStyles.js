@@ -15,36 +15,14 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
   }
   
-  .noHover {
-    pointer-events: none;
+  .App {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 0 24px;
   }
 
-  .div-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    max-height: 1000px;
-  }
-
-  .text-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    width: 20em;
-  }
-
-  .text-item {
-    width: 100%;
-    min-height: 45%;
-    margin-bottom: 10px;
-    background-color: #dfdfdf;
-    line-height: 2em;
-  }
-
-  .btn-container {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
+  .filler {
+    height: 200vh;
+    background: white;
   }
 `;
