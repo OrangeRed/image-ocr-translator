@@ -8,13 +8,14 @@ const TranslationMenu = ({
 
   return (
     <StyledTranslationMenu topPadding={topPadding} {...props}>
-      <h1>PLACEHOLDER</h1>
-      <h1>PLACEHOLDER</h1>
-      <h1>PLACEHOLDER</h1>
-      <h1>PLACEHOLDER</h1>
-      <h1>PLACEHOLDER</h1>
-      <h1>PLACEHOLDER</h1>
-      <h1>PLACEHOLDER</h1>
+      <h1>TRANSLATION AREA</h1> <br></br>
+      <h1>Placeholder text</h1> <br></br>
+      <h1>TRANSLATION AREA</h1> <br></br>
+      <h1>Placeholder text</h1> <br></br>
+      <h1>TRANSLATION AREA</h1> <br></br>
+      <h1>Placeholder text</h1> <br></br>
+      <h1>TRANSLATION AREA</h1> <br></br>
+      <h1>Placeholder text</h1> <br></br>
     </StyledTranslationMenu>
   );
 };

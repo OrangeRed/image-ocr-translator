@@ -4,45 +4,63 @@ export const StyledNavbar = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   margin: auto;
-  width: 100%;
-  background: red;
-  padding: 10px 24px 10px 24px;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  background: #2e3439;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+  padding: 0.5rem 1rem;
   z-index: 100;
 
   .navbar-container {
-    max-width: 1300px;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    background-color: yellow;
-    height: ${({ innerHeight }) => innerHeight};
+    align-items: center;
+  }
 
-    .nav-logo {
-      background: blue;
-      height: 100%;
-      display: flex;
+  .leftSide {
+    flex: 75%;
+    display: flex;
+    justify-content: flex-start;
+    height: 40px;
+  }
 
-      img {
-        height: 100%;
-      }
+  img {
+    height: 40px;
+    width: 40px;
+  }
 
-      p {
-        line-height: ${({ innerHeight }) => innerHeight};
-        font-size: 25px;
-        margin-left: 15px;
-        background: teal;
-      }
-    }
-
-    .nav-buttons {
-      background: green;
-
-      a {
-        line-height: ${({ innerHeight }) => innerHeight};
-        font-size: 18px;
-        text-decoration: none;
-      }
+  .rightSide {
+    flex: 25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    @media (max-width: 1440px) {
+      justify-content: flex-end;
     }
   }
+
+  .rightSide button {
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 56px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: #272b30;
+    border-radius: 0.25rem;
+    color: #ccc;
+    border: 2px solid rgba(128, 128, 128, 0.5);
+    text-align: center;
+  }
+
+  .rightSide button:hover {
+    color: black;
+    background-color: #ccc;
+  }
 `;
+

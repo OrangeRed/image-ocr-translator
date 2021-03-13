@@ -24,7 +24,6 @@ class App extends Component {
     const theme = this.state.isDarkMode ? darkTheme : lightTheme;
     const navbarHeight = "68px";
     const testImages = [
-      "https://lh3.googleusercontent.com/proxy/crRohF5zVONrvI2deiHEmo6fjAVGyfDeq_I_4ZA-CLC_9QHzXEt4wrHtKBa9PGkMFXm9sHwQ9NsceYqzi6wNKJaLTC4HTVeaEMNzYMpnbW367axOiOKVTn6Fk75_MTI7Bmp-gakhjCpZkY11Xpgca79ogeMnUIWO97gSclsh011d4eGNaUQjDcmR4DGYVg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
       "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
       "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png"

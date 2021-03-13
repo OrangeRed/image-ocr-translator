@@ -16,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   .App {
-    height: 100%;
+    height: 100vh;
   }
 
   .filler {
