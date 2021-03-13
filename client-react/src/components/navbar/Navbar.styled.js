@@ -20,16 +20,20 @@ export const StyledNavbar = styled.div`
     align-items: center;
   }
 
-  .leftSide {
-    flex: 75%;
-    display: flex;
-    justify-content: flex-start;
-    height: 40px;
+  .nav-logo {
+    cursor: pointer;
   }
 
   img {
     height: 40px;
     width: 40px;
+  }
+
+  .leftSide {
+    flex: 75%;
+    display: flex;
+    justify-content: flex-start;
+    height: 40px;
   }
 
   .rightSide {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function handleClick(){
+function handleClick() {
   //do the image upload here
   return;
 }

@@ -2,27 +2,16 @@ import React from 'react';
 import { StyledNavbar } from './Navbar.styled';
 import UserContainer from './userContainer/UserContainer';
 import { Snipper, ImageLoader, Settings } from './controls';
-// import Settings from './controls/Settings';
-// import ImageLoader from './controls/ImageLoader';
-// import Snipper from './controls/Snipper';
 
 function Navbar(props) {
   const navLogo = (
-    <div className="nav-logo">
+    <a className="nav-logo" href="/">
       <img 
         src={ "https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-picture-icon-png-image_695350.jpg" } 
         alt="logo"
       />
-    </div>
+    </a>
   );
-
-  // const loginButton = (
-  //   <a href="/temp">Login</a>
-  // );
-
-  // const signOutButton = (
-  //   <a href="/temp">Sign Out</a>
-  // );
 
   const topBottomPadding = 10;
   const heightInt = String(props.height.replace('px', ''));
