@@ -12,17 +12,14 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.body};
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: ${({ theme }) => theme.body};
   }
   
   .App {
     height: 100vh;
   }
-
-  .filler {
-    padding-top: 68px;
-    height: 200vh;
-    background: pink;
-    width: 70%;
-  }
-`;
+`
