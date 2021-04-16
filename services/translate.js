@@ -6,11 +6,11 @@ const translator = express.Router();
 
 // Google Translate API call
 translator.get('/google/:source/:target/:input', async (request, response) => {
-    const source = request.params.source;
+    const key = process.env.GOOGLE_TRANSLATE_API_KEY;
     const target = request.params.target;
     const input = request.params.input;
 
-    const google_translate_url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${source}&tl=${target}&dt=t&q=${input}.`;
+    const google_translate_url = `https://translation.googleapis.com/language/translate/v2?target=${target}&key=${key}&q=${input}.`;
     const google_translate = await fetch(encodeURI(google_translate_url))
     .then(async response => {
         const google_translate_json = await response.json();
