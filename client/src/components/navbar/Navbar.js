@@ -8,11 +8,14 @@ const Navbar = ({
   ...props
 }) => {
   
+  const navLogoUrl = 'https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-picture-icon-png-image_695350.jpg';
+
   const navLogo = (
     <span className='nav-logo'>
       <img 
-        src={ 'https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-picture-icon-png-image_695350.jpg' } 
-        alt='logo'
+          id='myImg'
+          src={ navLogoUrl } 
+          alt='logo'
       />
     </span>
   )

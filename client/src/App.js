@@ -6,6 +6,8 @@ import Navbar from './components/navbar/Navbar';
 import TranslationMenu from './components/translationMenu/TranslationMenu';
 import MediaDisplay from './components/mediaDisplay/MediaDisplay';
 import Button from './components/button/Button'
+import { ScreenCapture } from 'react-screen-capture';
+
 import { FaCropAlt, FaSpinner, FaCog } from 'react-icons/fa'
 
 
@@ -49,33 +51,50 @@ class App extends Component {
     console.log("Settings clicked")
   }
 
+  onStartCapture = (event) => {
+    console.log('hello')
+    this.setState({ on: true })
+  }
+
+  handleScreenCapture = screenCapture => {
+    this.setState({capturedImg: screenCapture});
+  };
+
   render() {
     const theme = this.state.isDarkMode ? darkTheme : lightTheme
     const testImages = [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
-      "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
-      "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png"
+      // "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
+      // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
+      './texts-in-italian-benigni.png',
+      // "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png"
     ]
 
-    const snipButton = <Button Icon={FaCropAlt} title='Snip' onClick={this.handleSnipButton} key={0} />
+    const snipButton = <Button Icon={FaCropAlt} title='Snip' onClick={this.onStartCapture} key={0} />
     const loadButton = <Button Icon={FaSpinner} title='Load' onClick={this.handleLoadButton} key={1} />
     const settingsButton = <Button Icon={FaCog} title='Settings' onClick={this.handleSettingsButton} key={2} />
     const settingsMobileButton = <Button Icon={FaCog} onClick={this.handleSettingsButton} key={2} />
 
     return (
-      <ThemeProvider theme={theme}>
-        <>
-        <GlobalStyles />
-          <div className="App">
-            <Navbar 
-              loggedIn={this.state.isLoggedIn} 
-              Buttons={this.state.isMobile ? [settingsMobileButton] : [snipButton, loadButton, settingsButton]}   
-            />
-            <TranslationMenu Buttons={this.state.isMobile ? [snipButton, loadButton] : ''}/>
-            <MediaDisplay media={testImages} />
-          </div>
-        </>
-      </ThemeProvider>
+      <ScreenCapture onStartCapture={this.onStartCapture} onEndCapture={this.handleScreenCapture}>
+        {({ onStartCapture }) => (
+          <ThemeProvider theme={theme}>
+            <>
+            <GlobalStyles />
+              <div className="App">
+                <Navbar 
+                  loggedIn={this.state.isLoggedIn} 
+                  Buttons={this.state.isMobile ? [settingsMobileButton] : [snipButton, loadButton, settingsButton]}   
+                />
+                <TranslationMenu Buttons={this.state.isMobile ? [snipButton, loadButton] : ''}/>
+                <MediaDisplay media={testImages} />
+                <button onClick={onStartCapture}>Capture</button>
+                <img src={this.state.capturedImg} /> 
+              </div>
+            </>
+          </ThemeProvider>
+          
+        )}
+      </ScreenCapture>
     );
   }
 }
