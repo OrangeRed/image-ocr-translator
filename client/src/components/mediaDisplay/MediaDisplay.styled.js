@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const StyledMediaDisplay = styled.div`
   padding-top: ${({ theme }) => theme.constants.navbarHeight + theme.constants.borderSize}px;
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: ${({ theme }) => theme.secondaryBackground};
   width: 75%;
 
   .media-container {
-    padding-bottom: 10px;
+    padding-bottom: 30px;
+    height: 100vh;
+    overflow: scroll;
 
     img {
       display: block;
@@ -22,7 +22,8 @@ export const StyledMediaDisplay = styled.div`
     width: 100%;
     
     .media-container {
-      padding-bottom: 30vh;
+      padding-bottom: 30px;
+      height: 70vh;
 
       img {
         margin-bottom: 10px;

@@ -19,7 +19,13 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.body};
   }
   
+  .overlay {
+    z-index: 200;
+    pointer-events: none;
+  }
+
   .App {
     height: 100vh;
+    overflow: hidden;
   }
 `
