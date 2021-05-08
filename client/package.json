@@ -10,8 +10,11 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
+    "react-image-crop": "^8.6.6",
+    "react-screen-capture": "^1.0.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.2.1",
+    "use-scroll-position": "0.0.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
