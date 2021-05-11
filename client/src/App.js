@@ -75,9 +75,27 @@ class App extends Component {
   }
 
   renderLoadButton = (event) => {
-    return <Button Icon={FaSpinner} title='Load' onClick={() => {
-      this.state.testImages.push('./HeadInText.png');
-    }} />
+    return <Button Icon={FaSpinner} title='Load' for='imgFile' onClick={(event) => {
+      const imgInput = document.createElement("input");
+      imgInput.setAttribute('type', 'file');
+      imgInput.setAttribute('accept', 'image/png, image/jpeg');
+      imgInput.setAttribute('className', 'img-input');
+
+      imgInput.addEventListener('change', (event) => {
+        const userImg = URL.createObjectURL(imgInput.files[0]);
+
+        this.setState({ testImages: [...this.state.testImages, userImg] });
+      })
+      imgInput.click();
+
+      // Ask the prof on Saturday
+      // This element does not appear on the DOM so do we have to kill it after we're done using it?
+      //
+      // How can we move userImg to ./public so that it can be captured using canvas2html
+      // At the moment canvas2html does not register uploaded picture because they are cross-domain
+
+    }} 
+    />
   }
 
   trackMouse = (event) => {
