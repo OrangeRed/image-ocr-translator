@@ -19,7 +19,40 @@ export const StyledTranslationMenu = styled.div`
   }
 
   .translation-container {
-    padding: 5px 10px 5px 10px;
+    display: flex;
+    flex-direction: column;
+
+    .translation-container-upper {
+      padding: 5px 10px 5px 10px;
+      height: 40vh;
+      
+    }
+
+    .translation-container-lower {
+      padding: 5px 10px 5px 10px;
+      height: 50vh;
+    }
+
+    .search-bar {
+      display: flex;
+
+      input {
+        flex: 90%;
+        height: 35px;
+        font-size: 20px;
+        padding-left: 10px;
+        border-radius: 0.25rem
+      }
+
+      button {
+        font-size: 20px;
+        flex: 35px;
+        height: 35px;
+        padding: 0px;
+        padding-left: 5px;
+        justify-content: center;
+      }
+    }
   }
 
   @media (max-width: ${({ theme }) => theme.constants.mobileWidth}px){
