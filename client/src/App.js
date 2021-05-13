@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { constants, lightTheme, darkTheme } from './styles/Themes';
 import { ScreenCapture } from 'react-screen-capture';
-import { FaCropAlt, FaSpinner, FaCog } from 'react-icons/fa'
+import { FaCropAlt, FaSpinner, FaCog, FaSearch } from 'react-icons/fa'
 import Navbar from './components/navbar/Navbar';
 import TranslationMenu from './components/translationMenu/TranslationMenu';
 import MediaDisplay from './components/mediaDisplay/MediaDisplay';
@@ -18,10 +18,7 @@ class App extends Component {
       isMobile: false,
       isDarkMode: true,
       isLoggedIn: false,
-      absX: 0,
-      absY: 0,
-      relX: 0,
-      relY: 0,
+      sourceText: '',
       testImages: [
       //   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
       // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
@@ -46,15 +43,6 @@ class App extends Component {
     let isMobile = windowWidth < constants.mobileWidth
     let menuOpen = isMobile ? this.state.menuOpen : false
     this.setState({ isMobile, menuOpen })
-  }
-
-  handleSnipButton = (event) => {
-    console.log("Snip clicked")
-  }
-
-  handleLoadButton = (event) => {
-    this.testImages.push('./texts-in-italian-benigni.png');
-    console.log("Load clicked")
   }
 
   handleSettingsButton = (event) => {
@@ -98,21 +86,23 @@ class App extends Component {
     />
   }
 
-  trackMouse = (event) => {
-    this.setState({ 
-      absX: event.screenX,
-      absY: event.screenY,
-      relX: event.clientX,
-      relY: event.clientY,
-    })
+  handleSearchRequest = () => {
+    //
+    // Make fetch request to translate API over here
+    //
+    console.log(this.state.sourceText);
+  }
+
+  trackSearchText = (text) => {
+    this.setState({ sourceText: text })
   }
 
   render() {
     const theme = this.state.isDarkMode ? darkTheme : lightTheme
 
-    // const loadButton = <Button Icon={FaSpinner} title='Load' onClick={this.handleLoadButton} key={1} />
     const settingsButton = <Button Icon={FaCog} title='Settings' onClick={this.handleSettingsButton} key={2} />
     const settingsMobileButton = <Button Icon={FaCog} onClick={this.handleSettingsButton} key={2} />
+    const searchButton = <Button Icon={FaSearch} title='' onClick={this.handleSearchRequest} />
 
     return (
       <ThemeProvider theme={theme} >
@@ -128,12 +118,11 @@ class App extends Component {
                   }   
               />
               <TranslationMenu 
-                absMouseX={this.state.absX}
-                absMouseY={this.state.absY}
-                relMouseX={this.state.relX}
-                relMouseY={this.state.relY}
                 media={this.state.capturedImg}
                 Buttons={this.state.isMobile ? [this.renderSnipButton(onStartCapture), this.renderLoadButton()] : ''}
+                searchButton={searchButton}
+                trackSearchText={this.trackSearchText}
+                sourceText={this.state.sourceText}
               />
               <MediaDisplay
                 media={this.state.testImages} 
