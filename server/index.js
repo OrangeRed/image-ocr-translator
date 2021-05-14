@@ -1,11 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-import authRoute from './routes/auth.js';
-import postRoute from './routes/posts.js';
+import userRoute from './routes/userRoute.js';
 import translateRoute from './services/translate.js';
+import docRoute from './routes/docRoute.js'
 
 dotenv.config();
 
@@ -20,10 +19,10 @@ app.use(express.json());
 app.use(express.static('client'));
 
 // Route Middleware
-const endpoint = 'api';
-app.use(`/${ endpoint }/user`, authRoute);
-app.use(`/${ endpoint }/posts`, postRoute);
-app.use(`/${ endpoint }/translate`, translateRoute);
+const endpoint = 'api'
+app.use(`/${ endpoint }/user`, userRoute)
+app.use(`/${ endpoint }/document`, docRoute)
+app.use(`/${ endpoint }/translate`, translateRoute)
 
 // Handles any requests that don't match
 app.get('*', (_, res) => {
