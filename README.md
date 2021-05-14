@@ -12,25 +12,41 @@ git clone --recursive git@github.com:OrangeRed/image-ocr-translator.git
 cd image-ocr-translator
 ```
 
-Install dependencies:
+<br/>
+
+## Setup
+
+### Install dependencies:
 
 ```
-npm install
+npm install --prefix ./client
+npm install --prefix ./server
 ```
 
-Configure environment variable:<br />
-Rename `.env.example` file to `.env` and replace all text in brackets (inclusive). It should look something like this:
+### Configure environment variables:
+Create a `.env` file in the server directory.
 ```
-CONNECTION_URL = mongodb+srv://admin:password@cluster0.8fhqr.mongodb.net/<dbname>?retryWrites=true&w=majority
+touch server/.env
+```
+
+Open `.env` file with your favorite text editor, copy the code below, and replace the text in brackets (inclusive).
+```
+CONNECTION_URL = <MONGODB-CONNECTION-URL>
 PORT = 5000
-TOKEN_SECRET = zY1hgypILYUw870JWd4wV7TAIMU2K2V9ZYKd9N266LpfFt4TmXEafOtlAOQZWlrMCL
+TOKEN_SECRET = <TOKEN-SECRET>
+AWS_BUCKET_NAME = image-ocr-translator
+AWS_ACCESS_KEY_ID = <AWS-ACCESS-KEY-ID>
+AWS_SECRET_ACCESS_KEY = <AWS-SECRET-ACCESS-KEY>
+AWS_REGION = us-east-1
+AZURE_OCR_KEY = <AZURE-OCR-KEY>
+AZURE_OCR_ORIGIN = eastus
 ```
 
 <br/>
 
 ## Running the Project
 ```
-npm start
+npm run dev --prefix ./server
 ```
 Confirm the server is running by visiting `http://localhost:5000` in your web browser.
 
@@ -69,4 +85,4 @@ npx kill-port 5000
 
 <br/>
 
-### API documentation can be found [here](https://github.com/OrangeRed/image-ocr-translator/tree/main/API.md).
+### API documentation can be found [here](https://github.com/OrangeRed/image-ocr-translator/tree/main/server/API.md).

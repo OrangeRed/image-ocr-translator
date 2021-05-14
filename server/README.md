@@ -64,36 +64,3 @@ Content-Type: text/html
 
 Invalid password
 ```
-
-<br/>
-
-## Posts
-Get posts for user using `auth-token`.
-
-#### Request:
-```
-GET /api/posts
-Content-Type: application/json
-auth-token: [auth-token]
-```
-
-#### Successful Response:
-```
-200 OK
-Content-Type: application/json
-
-{
-  "posts": {
-    "title": "My first post",
-    "description: "Private Data
-  }
-}
-```
-
-#### Failed Response:
-```
-400 Bad Request
-Content-Type: text/html
-
-Invalid Token
-```
