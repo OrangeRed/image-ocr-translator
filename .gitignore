@@ -8,8 +8,7 @@ node_modules
 /build
 
 # temp dir
-uploads
-tessdata
+server/uploads
 
 # misc
 .DS_Store
