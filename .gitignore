@@ -5,11 +5,10 @@ node_modules
 /coverage
 
 # production
-/build
+client/build
 
 # temp dir
-uploads
-tessdata
+server/uploads
 
 # misc
 .DS_Store
