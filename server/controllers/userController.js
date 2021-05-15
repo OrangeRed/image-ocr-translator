@@ -28,4 +28,16 @@ const loginUser = async (req, res) => {
   }
 }
 
-export default { registerUser, loginUser }
+const getUser = async (req, res) => {
+
+  const userID = req.user
+
+  try {
+    const user = await UserService.getUser(userID)
+    return res.status(200).json({ status: 200, user: user })
+  } catch {
+    return res.status(400).json({ status: 400, error: error.message })
+  }
+}
+
+export default { registerUser, loginUser, getUser }

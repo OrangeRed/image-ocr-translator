@@ -73,4 +73,16 @@ const loginUser = async (email, password) => {
   return jsonwebtoken.sign({ _id: user._id }, process.env.TOKEN_SECRET)
 }
 
-export default { registerUser, loginUser }
+const getUser = async (userID) => {
+  const user = await User
+    .findOne({_id: userID})
+    .populate("collections")
+
+  if (!user) throw Error('Unauthorized')
+
+  user.password = undefined
+
+  return user
+}
+
+export default { registerUser, loginUser, getUser }

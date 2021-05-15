@@ -64,3 +64,30 @@ Content-Type: text/html
 
 Invalid password
 ```
+
+## Languages
+
+```
+unk (AutoDetect)
+zh-Hans (ChineseSimplified)
+zh-Hant (ChineseTraditional)
+cs (Czech)
+da (Danish)
+nl (Dutch)
+en (English)
+fi (Finnish)
+fr (French)
+de (German)
+el (Greek)
+hu (Hungarian)
+it (Italian)
+Ja (Japanese)
+ko (Korean)
+nb (Norwegian)
+pl (Polish)
+pt (Portuguese,
+ru (Russian)
+es (Spanish)
+sv (Swedish)
+tr (Turkish)
+```

@@ -1,25 +1,15 @@
-import microsoftComputerVision from 'microsoft-computer-vision'
-import fs from 'fs'
 
-const ocr = async (filePath) => {
+const createDoc = (ocrData, lang) => {
+  const document = {
+    "translateLang": lang,
+    "originalLang": ocrData.language,
+    "lines": ocrData.regions[0].lines
+  }
 
-  const AZURE_OCR_KEY = process.env.AZURE_OCR_KEY
-  const AZURE_OCR_ORIGIN = process.env.AZURE_OCR_ORIGIN
+  // TODO: Translate document lines.words
+  document.translateLang = lang
 
-  fs.readFile(filePath, function(error, data) {
-    microsoftComputerVision.orcImage({
-      "Ocp-Apim-Subscription-Key": AZURE_OCR_KEY,
-      "request-origin": AZURE_OCR_ORIGIN,
-      "language": "en", // AutoDetect
-      "detect-orientation": true,
-      "content-type": "application/octet-stream",
-      "body": data
-    }).then((result) => {
-      console.log(result)
-    }).catch((error) => {
-      throw error
-    })
-  })
+  return document
 }
 
-export default { ocr }
+export default { createDoc }

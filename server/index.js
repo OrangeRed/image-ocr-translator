@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path'
 import userRoute from './routes/userRoute.js';
+import collectionRoute from './routes/collectionRoute.js'
 import translateRoute from './services/translate.js';
 import docRoute from './routes/docRoute.js'
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, '../client/build')))
 // Route Middleware
 const endpoint = 'api'
 app.use(`/${ endpoint }/user`, userRoute)
+app.use(`/${ endpoint }/collection`, collectionRoute)
 app.use(`/${ endpoint }/document`, docRoute)
 app.use(`/${ endpoint }/translate`, translateRoute)
 

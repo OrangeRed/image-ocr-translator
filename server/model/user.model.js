@@ -19,10 +19,14 @@ const userSchema = new mongoose.Schema({
     max: 1024,
     min: 6
   },
-  date: {
+  creationDate: {
     type: Date,
     default: Date.now
-  }
+  },
+  collections: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Collection"
+ }]
 });
 
 const User = mongoose.model('User', userSchema);
