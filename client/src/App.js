@@ -111,9 +111,15 @@ if(data === ""){
 return
 }
 let response = fetch(`${url}/${endpoint}/${cmd}/${svc}/${src}/${tgt}/${data}.`)
-.then((response)=>{this.state.responseText=response})
-.catch(err=>{console.log(err)})
-  console.log(this.state.responseText);
+    .then(function(response) {
+    return response.text();
+  })
+  .then(function(myText) {
+console.log(myText);
+});
+//.catch(err=>{console.log(err)})
+//this.state.responseText = myText;
+//console.log(this.state.responseText);
   }
 
   trackSearchText = (text) => {
