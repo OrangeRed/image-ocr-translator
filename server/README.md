@@ -42,11 +42,11 @@ auth-token: auth-token
 
 <br/>
 
-## Collection/
+## Page/
 
-Create a collection
+Create a page
 ```
-POST /api/collection/
+POST /api/page/
 Content-Type: application/json
 auth-token: auth-token (optional)
 
@@ -55,37 +55,37 @@ auth-token: auth-token (optional)
 }
 ```
 
-Get a collection
+Get a page
 ```
-GET /api/collection/
+GET /api/page/
 Content-Type: application/json
 auth-token: auth-token (optional)
 
 {
-  "collectionID": "609f16b9bf97e41a523d486c"
+  "pageID": "609f16b9bf97e41a523d486c"
 }
 ```
 
-Update a collection
+Update a page
 ```
-PUT /api/collection/
+PUT /api/page/
 Content-Type: application/json
 auth-token: auth-token (optional)
 
 {
-  "collectionID": "609f16b9bf97e41a523d486c",
+  "pageID": "609f16b9bf97e41a523d486c",
   "translationLang": "en"
 }
 ```
 
-Delete a collection
+Delete a page
 ```
-DELETE /api/collection/
+DELETE /api/page/
 Content-Type: application/json
 auth-token: auth-token (optional)
 
 {
-  "collectionID": "609f16b9bf97e41a523d486c"
+  "pageID": "609f16b9bf97e41a523d486c"
 }
 ```
 
