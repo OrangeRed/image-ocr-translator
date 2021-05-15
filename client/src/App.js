@@ -70,9 +70,18 @@ class App extends Component {
       imgInput.setAttribute('className', 'img-input');
 
       imgInput.addEventListener('change', (event) => {
-        const userImg = URL.createObjectURL(imgInput.files[0]);
+        // const userImg = URL.createObjectURL(imgInput.files[0]);
+        const formData = new FormData()
+        formData.append('myFile', event.target.files[0])
 
-        this.setState({ testImages: [...this.state.testImages, userImg] });
+        fetch('http://localhost:5000/api/upload', {
+          method: 'post',
+          body: formData,
+        })
+        .then( res => console.log(res.json()) );  
+
+        // this.setState({ testImages: [...this.state.testImages, userImg] });
+
       })
       imgInput.click();
 

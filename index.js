@@ -3,9 +3,11 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import fileupload from 'express-fileupload';
 import authRoute from './routes/auth.js';
 import postRoute from './routes/posts.js';
 import translateRoute from './services/translate.js';
+import uploadRoute from './services/imageUpload.js';
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ const GOOGLE_TRANSLATE_API_KEY = process.env.GOOGLE_TRANSLATE_API_KEY || "SAMPLE
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(fileupload());
 app.use(express.static('client'));
 
 // Route Middleware
@@ -24,6 +27,7 @@ const endpoint = 'api';
 app.use(`/${ endpoint }/user`, authRoute);
 app.use(`/${ endpoint }/posts`, postRoute);
 app.use(`/${ endpoint }/translate`, translateRoute);
+app.use(`/${ endpoint }/upload`, uploadRoute);
 
 // Handles any requests that don't match
 app.get('*', (_, res) => {
@@ -38,3 +42,5 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
   .catch((error) => console.log(error.message));
 
 mongoose.set('useFindAndModify', false);
+
+app.listen(PORT);
