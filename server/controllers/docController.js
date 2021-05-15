@@ -26,10 +26,10 @@ const createDoc = async (req, res) => {
 
   const pageID = req.header('pageID')
   const userToken = req.user
-  const filePath = req.file
+  const file = req.file
 
   try {
-    const doc = await DocService.createDoc(userToken, pageID, filePath)
+    const doc = await DocService.createDoc(userToken, pageID, file)
     return res.status(200).json({ status: 200, document: doc })
 
   } catch (error) {
@@ -37,4 +37,18 @@ const createDoc = async (req, res) => {
   }
 }
 
-export default { createDoc }
+const deleteDoc = async (req, res) => {
+
+  const { docID } = req.body
+  const userToken = req.user
+
+  try {
+    const deleted = await DocService.deleteDoc(userToken, docID)
+    return res.status(200).json({ status: 200, deleted: deleted })
+
+  } catch (error) {
+    return res.status(400).json({ status: 400, error: error.message })
+  }
+}
+
+export default { createDoc, deleteDoc }

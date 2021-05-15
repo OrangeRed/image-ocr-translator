@@ -91,6 +91,31 @@ auth-token: auth-token (optional)
 
 <br/>
 
+## Document/
+
+Create a document
+```
+POST /api/document/
+Content-Type: multipart/form-data
+auth-token: auth-token (optional)
+pageID: pageID
+
+[image]
+```
+
+Delete a document
+```
+Delete /api/document/
+Content-Type: application/json
+auth-token: auth-token (optional)
+
+{
+    "docID": "609f3f6c4529772c2171cfd7"
+}
+```
+
+<br/>
+
 ## Languages
 ```
 unk (AutoDetect)

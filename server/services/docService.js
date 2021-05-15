@@ -15,32 +15,31 @@ import fs from 'fs'
 //   return document
 // }
 
-const createDoc = async (userToken, pageID, filePath) => {
+const createDoc = async (userToken, pageID, file) => {
   const page = await Page.findOne({_id: pageID})
   if (!page) throw Error('Page not found')
 
   const userID = userToken != undefined ? userToken._id : undefined
-  if (collection.user != userID) throw Error('Unauthorized')
+  if (page.user != userID) throw Error('Unauthorized')
 
-  if (!filePath) throw Error('Invalid file provided')
-
-  const fileType = ".temp"
+  if (!file) throw Error('Invalid file provided')
 
   // TODO: Save to AWS and return link
-  const fileURL = "AWS-URL-TEMP"
+  const fileURL = "AWS-URL-TEMP.com"
+
+  // Delete file from local storage
+  fs.unlinkSync(file.path)
 
   const newDoc = new Doc({
-    fileType: fileType,
-    fileURL: fileURL,
-    page: pageID._id
+    fileType: file.mimetype,
+    fileUrl: fileURL,
+    page: page._id
   })
 
   try {
     const savedDoc = await newDoc.save()
     page.documents.push(savedDoc)
-
-    // Delete file from local storage
-    fs.unlinkSync(filePath)
+    await page.save()
 
     return savedDoc
   } catch(error) {
@@ -48,4 +47,26 @@ const createDoc = async (userToken, pageID, filePath) => {
   }
 }
 
-export default { createDoc }
+const deleteDoc = async (userToken, docID) => {
+  const doc = await Doc.findOne({_id: docID})
+  if (!doc) throw Error('Document not found')
+
+  const page = await Page.findOne({_id: doc.page})
+  if (!page) throw Error('Associated page not found')
+
+  const userID = userToken != undefined ? userToken._id : undefined
+  if (page.user != userID) throw Error('Unauthorized')
+
+  // TODO: Delete file on AWS
+
+  try {
+    doc.remove()
+    const deleted = await Doc.findOne({_id: docID}) == undefined
+    return deleted
+
+  } catch(error) {
+    throw(error)
+  }
+}
+
+export default { createDoc, deleteDoc }

@@ -7,8 +7,6 @@ const router = express.Router()
 
 // TODO: Change imageUpload middleware to fileUpload
 router.post('/', verifyToken, imageUpload, docController.createDoc)
-
-//- post Document (file, Collection ID, optional user token) returns Document
-//	- delete Document (Document ID, optional user token) return Status
+router.delete('/', verifyToken, docController.deleteDoc)
 
 export default router

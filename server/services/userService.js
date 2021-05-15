@@ -76,7 +76,7 @@ const loginUser = async (email, password) => {
 const getUser = async (userID) => {
   const user = await User
     .findOne({_id: userID})
-    .populate("collections")
+    .populate("pages")
 
   if (!user) throw Error('Unauthorized')
 

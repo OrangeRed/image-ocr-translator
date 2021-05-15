@@ -13,11 +13,11 @@ const createPage = async (userToken, translationLang) => {
       .required(),
   })
 
-  // Collection Validation
+  // Page Validation
   const { validationError } = pageSchema.validate({ translationLang })
   if (validationError) throw Error(validationError.details[0].message)
 
-  // Create new collection
+  // Create new page
   const newPage = new Page({
     translationLang: translationLang,
     user: userID
@@ -37,7 +37,9 @@ const createPage = async (userToken, translationLang) => {
 }
 
 const getPage = async (userToken, pageID) => {
-  const page = await Page.findOne({_id: pageID})
+  const page = await Page
+    .findOne({_id: pageID})
+    .populate("documents")
 
   if (!page) throw Error('Page not found')
 
@@ -46,7 +48,7 @@ const getPage = async (userToken, pageID) => {
 
   page.user = undefined
 
-  return collection
+  return page
 }
 
 const updatePage = async (userToken, pageID, translationLang) => {
