@@ -23,9 +23,9 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  collections: [{ 
+  pages: [{ 
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Collection"
+    ref: "Page"
  }]
 });
 

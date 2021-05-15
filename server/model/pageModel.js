@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const collectionSchema = new mongoose.Schema({
+const pageSchema = new mongoose.Schema({
   translationLang: {
     type: String,
     required: true,
@@ -14,9 +14,13 @@ const collectionSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  documents: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Document"
+ }]
 });
 
-const Collection = mongoose.model('Collection', collectionSchema);
+const Page = mongoose.model('Page', pageSchema);
 
-export default Collection;
+export default Page;
