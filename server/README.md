@@ -1,6 +1,6 @@
 # API Documentation
 
-## Register
+## User/Register
 Send user credentials to create an account.
 
 #### Request:
@@ -15,27 +15,7 @@ Content-Type: application/json
 }
 ```
 
-#### Successful Response:
-```
-200 OK
-Content-Type: application/json
-
-{
-  "user": "603d7c89b3652d0189803d00"
-}
-```
-
-#### Failed Response:
-```
-400 Bad Request
-Content-Type: text/html
-
-Email, email@something.com, already exists
-```
-
-<br/>
-
-## Login
+## User/Login
 Send user login credentials and get back an `auth-token`.
 
 #### Request:
@@ -49,24 +29,69 @@ Content-Type: application/json
 }
 ```
 
-#### Successful Response:
-```
-200 OK
-Content-Type: text/html
+## User/
+Get user for corresponding `auth-token`.
 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNkNzNhNWIzNjUyZDAxODk4MDNjZmYiLCJpYXQiOjE2MTQ2NDI4MTJ9.5ToonQb03y8o7dzC45lW44Ws2vADxgujuypNInguRv8
+#### Request:
+```
+GET /api/user/
+Content-Type: application/json
+auth-token: auth-token
+
 ```
 
-#### Failed Response:
-```
-400 Bad Request
-Content-Type: text/html
+<br/>
 
-Invalid password
+## Collection/
+
+Create a collection
 ```
+POST /api/collection/
+Content-Type: application/json
+auth-token: auth-token (optional)
+
+{
+  "translationLang": "en"
+}
+```
+
+Get a collection
+```
+GET /api/collection/
+Content-Type: application/json
+auth-token: auth-token (optional)
+
+{
+  "collectionID": "609f16b9bf97e41a523d486c"
+}
+```
+
+Update a collection
+```
+PUT /api/collection/
+Content-Type: application/json
+auth-token: auth-token (optional)
+
+{
+  "collectionID": "609f16b9bf97e41a523d486c",
+  "translationLang": "en"
+}
+```
+
+Delete a collection
+```
+DELETE /api/collection/
+Content-Type: application/json
+auth-token: auth-token (optional)
+
+{
+  "collectionID": "609f16b9bf97e41a523d486c"
+}
+```
+
+<br/>
 
 ## Languages
-
 ```
 unk (AutoDetect)
 zh-Hans (ChineseSimplified)

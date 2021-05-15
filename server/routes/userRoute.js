@@ -6,11 +6,9 @@ const router = express.Router()
 
 router.post('/register', UserController.registerUser)
 router.post('/login', UserController.loginUser)
-
-// app.use(`/${ endpoint }/collection`, collectionRoute)
 router.get('/', verifyToken, UserController.getUser)
 
 // TODO: Add logout
-// TODO: Add login/token/refresh, /token/delete
+// TODO: Add token refresh, token delete
 
 export default router
