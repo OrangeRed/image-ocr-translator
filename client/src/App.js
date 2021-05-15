@@ -19,7 +19,8 @@ class App extends Component {
       isDarkMode: true,
       isLoggedIn: false,
       sourceText: '',
-      testImages: [
+      responseText: '',
+testImages: [
       //   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
       // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
       // "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png",
@@ -99,7 +100,20 @@ class App extends Component {
     //
     // Make fetch request to translate API over here
     //
-    console.log(this.state.sourceText);
+  const url="http://localhost:5000";
+const endpoint="api";
+const cmd="translate";
+const svc="google";
+const src="es";
+const tgt="en";
+const data = this.state.sourceText;
+if(data === ""){
+return
+}
+let response = fetch(`${url}/${endpoint}/${cmd}/${svc}/${src}/${tgt}/${data}.`)
+.then((response)=>{this.state.responseText=response})
+.catch(err=>{console.log(err)})
+  console.log(this.state.responseText);
   }
 
   trackSearchText = (text) => {
