@@ -103,19 +103,21 @@ testImages: [
   const url="http://localhost:5000";
 const endpoint="api";
 const cmd="translate";
-const svc="google";
+const svc=["google","libre","myMemory"];
 const src="es";
 const tgt="en";
 const data = this.state.sourceText;
 if(data === ""){
 return
 }
-let response = fetch(`${url}/${endpoint}/${cmd}/${svc}/${src}/${tgt}/${data}.`)
+svc.forEach((service)=>{
+fetch(`${url}/${endpoint}/${cmd}/${service}/${src}/${tgt}/${data}.`)
     .then(function(response) {
     return response.text();
   })
   .then(function(myText) {
-this.setState({responseText:myText})
+this.setState({myText+responseText:myText+" from "+$service+" "})
+});
 });
 //.catch(err=>{console.log(err)})
 //this.state.responseText = myText;
