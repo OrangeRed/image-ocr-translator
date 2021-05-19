@@ -19,11 +19,8 @@ class App extends Component {
       isDarkMode: true,
       isLoggedIn: false,
       sourceText: '',
-      responseText: '',
-testImages: [
-      //   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
-      // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
-      // "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png",
+      responseText: [],
+      testImages: [
         './texts-in-italian-benigni.png',
         './HeadInText.png'
       ]
@@ -79,7 +76,7 @@ testImages: [
           method: 'post',
           body: formData,
         })
-        .then( res => console.log(res.json()) );  
+        .then( res => console.log(res.json()));  
 
         // this.setState({ testImages: [...this.state.testImages, userImg] });
 
@@ -97,29 +94,31 @@ testImages: [
   }
 
   handleSearchRequest = () => {
-    //
-    // Make fetch request to translate API over here
-    //
-  const url="http://localhost:5000";
-const endpoint="api";
-const cmd="translate";
-const svc="google";
-const src="es";
-const tgt="en";
-const data = this.state.sourceText;
-if(data === ""){
-return
-}
-let response = fetch(`${url}/${endpoint}/${cmd}/${svc}/${src}/${tgt}/${data}.`)
-    .then(function(response) {
-    return response.text();
-  })
-  .then(function(myText) {
-console.log(myText);
-});
-//.catch(err=>{console.log(err)})
-//this.state.responseText = myText;
-//console.log(this.state.responseText);
+      //
+      // Make fetch request to translate API over here
+      //
+    const url="http://localhost:5000";
+    const endpoint="api";
+    const cmd="translate";
+    const svc=["google", "myMemory"];
+    const src="es";
+    const tgt="en";
+    const data = this.state.sourceText;
+    if(data === ""){
+    return
+    }
+    this.setState({ responseText: [] });
+    svc.forEach( service => {
+      fetch(`${url}/${endpoint}/${cmd}/${service}/${src}/${tgt}/${data}`)
+        .then( (response) => {
+        return response.text();
+      })
+      .then( (myText) => {
+        myText = myText.slice(1,-1);
+        this.setState({ responseText: [...this.state.responseText, myText] });
+        console.log(myText);
+      });
+    })
   }
 
   trackSearchText = (text) => {
@@ -152,6 +151,7 @@ console.log(myText);
                 searchButton={searchButton}
                 trackSearchText={this.trackSearchText}
                 sourceText={this.state.sourceText}
+                responseText={this.state.responseText}
               />
               <MediaDisplay
                 media={this.state.testImages} 

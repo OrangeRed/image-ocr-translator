@@ -6,10 +6,19 @@ const TranslationMenu = ({
   Buttons,
   searchButton,
   trackSearchText,
+  responseText,
   sourceText,
   ...props
 }) => {
 
+  const displayResponseText = (responseText) => {
+    return(
+      <>
+        <h1>{responseText[0]}</h1> <br></br>
+        <h1>{responseText[1]}</h1> <br></br>
+      </>
+    )
+  }
   return (
     <StyledTranslationMenu {...props}>
       <div className='menu-navbar-container'>
@@ -27,7 +36,7 @@ const TranslationMenu = ({
         </div>
         <div className='translation-container-lower'> 
             <h1>{sourceText}</h1><br></br>
-            <h1>Placeholder text</h1> <br></br>
+            {displayResponseText(responseText)}
             <h1>TRANSLATION AREA</h1> <br></br>  
         </div>
       </div>
