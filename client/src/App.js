@@ -115,7 +115,7 @@ let response = fetch(`${url}/${endpoint}/${cmd}/${svc}/${src}/${tgt}/${data}.`)
     return response.text();
   })
   .then(function(myText) {
-console.log(myText);
+this.setState({responseText:myText})
 });
 //.catch(err=>{console.log(err)})
 //this.state.responseText = myText;
@@ -151,8 +151,9 @@ console.log(myText);
                 Buttons={this.state.isMobile ? [this.renderSnipButton(onStartCapture), this.renderLoadButton()] : ''}
                 searchButton={searchButton}
                 trackSearchText={this.trackSearchText}
+responseText={this.state.responseText}
                 sourceText={this.state.sourceText}
-              />
+/>
               <MediaDisplay
                 media={this.state.testImages} 
               />

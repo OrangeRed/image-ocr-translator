@@ -7,7 +7,8 @@ const TranslationMenu = ({
   searchButton,
   trackSearchText,
   sourceText,
-  ...props
+  responseText,
+...props
 }) => {
 
   return (
@@ -26,8 +27,7 @@ const TranslationMenu = ({
           {searchButton}
         </div>
         <div className='translation-container-lower'> 
-            <h1>{sourceText}</h1><br></br>
-            <h1>Placeholder text</h1> <br></br>
+            <h1>{responseText}</h1> <br></br>
             <h1>TRANSLATION AREA</h1> <br></br>  
         </div>
       </div>
