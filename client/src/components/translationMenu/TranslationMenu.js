@@ -8,7 +8,8 @@ const TranslationMenu = ({
   trackSearchText,
   responseText,
   sourceText,
-  ...props
+  responseText,
+...props
 }) => {
 
   const displayResponseText = (responseText) => {
