@@ -23,8 +23,8 @@ class App extends Component {
       //   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
       // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
       // "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png",
-        './texts-in-italian-benigni.png',
-        './HeadInText.png'
+        './img/texts-in-italian-benigni.png',
+        // './HeadInText.png'
       ]
     }
   }
@@ -70,7 +70,6 @@ class App extends Component {
       imgInput.setAttribute('className', 'img-input');
 
       imgInput.addEventListener('change', (event) => {
-        // const userImg = URL.createObjectURL(imgInput.files[0]);
         const formData = new FormData()
         formData.append('myFile', event.target.files[0])
 
@@ -78,20 +77,11 @@ class App extends Component {
           method: 'post',
           body: formData,
         })
-        .then( res => console.log(res.json()) );  
-
-        // this.setState({ testImages: [...this.state.testImages, userImg] });
-
-      })
+        .then( res => res.json())
+        .then( data => this.setState({ testImages: [...this.state.testImages, `./img/${data.seed}${event.target.files[0].name }`] }))  
+      }) 
       imgInput.click();
-
-      // Ask the prof on Saturday
-      // This element does not appear on the DOM so do we have to kill it after we're done using it?
-      //
-      // How can we move userImg to ./public so that it can be captured using canvas2html
-      // At the moment canvas2html does not register uploaded picture because they are cross-domain
-
-    }} 
+    }}
     />
   }
 

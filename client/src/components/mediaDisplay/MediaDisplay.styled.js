@@ -7,8 +7,9 @@ export const StyledMediaDisplay = styled.div`
 
   .media-container {
     padding-bottom: 30px;
-    height: 100vh;
+    height: 94vh;
     overflow: scroll;
+    overflow-x: hidden;
 
     img {
       display: block;

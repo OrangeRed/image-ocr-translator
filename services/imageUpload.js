@@ -1,6 +1,6 @@
 import multer from 'multer';
 import fs from 'fs';
-import express from 'express';
+import express, { response } from 'express';
 import fetch from 'node-fetch';
 import { uuid } from 'uuidv4';
 
@@ -17,12 +17,12 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const path = './uploads';
-    fs.mkdirSync(path, { recursive: true });
+    const path = './client';
+    // fs.mkdirSync(path, { recursive: true });
     cb(null, path)
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + uuid() + '-' + Date.now())
+    cb(null, file.originalname) //+ '-' + uuid() + '-' + Date.now() + '.png')
   }
 });
 
@@ -37,14 +37,15 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   fileFilter,
   storage: storage,
-}).single('image');
+}).array('myFile', 1);
 
-// router.post('/', (req, res) => {
-//   const img = req.files.myFile
-//   upload();
-//   console.log(fileName);
+router.post('/', async (req, res) => {
+  const img = req.files.myFile
+  const seed = uuid();
+  img.mv(`client/public/img/${seed}${img.name}`)
+  res.json({ 'seed': seed })
+});
 
-//   return res;
-// })
+
 
 export default router;
