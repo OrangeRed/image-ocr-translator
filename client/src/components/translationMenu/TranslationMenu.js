@@ -8,11 +8,10 @@ const TranslationMenu = ({
   trackSearchText,
   responseText,
   sourceText,
-  responseText,
 ...props
 }) => {
 
-  const displayResponseText = (responseText) => {
+  const displayResponseText = () => {
     return(
       <>
         <h1>{responseText[0]}</h1> <br></br>
@@ -37,7 +36,7 @@ const TranslationMenu = ({
         </div>
         <div className='translation-container-lower'> 
             <h1>{sourceText}</h1><br></br>
-            {displayResponseText(responseText)}
+            {displayResponseText()}
             <h1>TRANSLATION AREA</h1> <br></br>  
         </div>
       </div>
