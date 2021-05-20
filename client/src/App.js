@@ -51,11 +51,14 @@ class App extends Component {
 
   handleScreenCapture = (screenCapture) => {
     this.setState({ capturedImg: screenCapture });
-    // fetch('http://localhost:5000/ocr/',
-    // {
-    //   data: screenCapture,
-    // })
-    // .then()
+
+    fetch('http://localhost:5000/api/ocr', {
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify( {'image': screenCapture} ),
+        })
+        .then( res => res.json())
+        .then( data => console.log(data))
   };
 
   renderSnipButton = (onStartCapture) => {
@@ -72,13 +75,13 @@ class App extends Component {
       imgInput.addEventListener('change', (event) => {
         // const userImg = URL.createObjectURL(imgInput.files[0]);
         const formData = new FormData()
-        formData.append('myFile', event.target.files[0])
+        formData.append('image', event.target.files[0])
 
         fetch('http://localhost:5000/api/upload', {
           method: 'post',
           body: formData,
         })
-        .then( res => console.log(res.json()) );  
+        .then( res => console.log(res.json()) ); 
 
         // this.setState({ testImages: [...this.state.testImages, userImg] });
 
