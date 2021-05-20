@@ -105,14 +105,14 @@ class App extends Component {
     const tgt="en";
     const data = this.state.sourceText;
     if(data === ""){
-    return
+      return
     }
     this.setState({ responseText: [] });
     svc.forEach( service => {
       fetch(`${url}/${endpoint}/${cmd}/${service}/${src}/${tgt}/${data}`)
         .then( response => response.json())
-        .then( data => {
-          this.setState({ responseText: [...this.state.responseText, data] });
+        .then( text => {
+          this.setState({ responseText: [...this.state.responseText, text] });
         });
     })
   }
