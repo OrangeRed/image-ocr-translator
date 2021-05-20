@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   handleScreenCapture = (screenCapture) => {
-    this.setState({ capturedImg: screenCapture });
+    // this.setState({ capturedImg: screenCapture });
 
     fetch('http://localhost:5000/api/ocr', {
           method: 'post',
