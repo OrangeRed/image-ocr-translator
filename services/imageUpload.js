@@ -39,7 +39,7 @@ const upload = multer({
   storage: storage,
 }).array('myFile', 1);
 
-router.post(`/`, async (req, res) => {
+router.post(`/`, (req, res) => {
   const img = req.files.image
   const ext  = img.mimetype.split('/');
   const seed = uuid();

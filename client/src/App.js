@@ -21,8 +21,7 @@ class App extends Component {
       ocrResult: null,
       sourceText: '',
       responseText: [],
-      testImages: [],
-        // './texts-in-italian-benigni.png',
+      images: [],
     }
   }
 
@@ -93,7 +92,7 @@ class App extends Component {
           body: formData
         })
         .then( res => res.json())
-        .then( data => this.setState({ testImages: [...this.state.testImages, `./img/image-${data.seed}.${data.ext}`] }))  
+        .then( data => this.setState({ images: [...this.state.images, `./img/image-${data.seed}.${data.ext}`] }))  
       }) 
       imgInput.click();
     }}
@@ -155,7 +154,7 @@ class App extends Component {
                 responseText={this.state.responseText}
               />
               <MediaDisplay
-                media={this.state.testImages.length !== 0 ? this.state.testImages : ['./test-img.jpg']} 
+                media={this.state.images.length !== 0 ? this.state.images : ['./img/tutorial-img.png']} 
               />
             
             </div>
