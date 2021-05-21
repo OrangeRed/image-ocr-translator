@@ -18,11 +18,13 @@ class App extends Component {
       isMobile: false,
       isDarkMode: true,
       isLoggedIn: false,
+      ocrResult: null,
       sourceText: '',
       responseText: [],
       testImages: [
         './texts-in-italian-benigni.png',
-        './HeadInText.png'
+        './HeadInText.png',
+        './test-img.jpg'
       ]
     }
   }
@@ -49,11 +51,29 @@ class App extends Component {
 
   handleScreenCapture = (screenCapture) => {
     this.setState({ capturedImg: screenCapture });
-    // fetch('http://localhost:5000/ocr/',
-    // {
-    //   data: screenCapture,
-    // })
-    // .then()
+
+    fetch('http://localhost:5000/api/ocr', {
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify( {'image': this.state.capturedImg } ),
+        })
+        .then( res => res.json())
+        .then( data => {
+          this.setState({ ocrResult: '' })
+          console.log(data)
+          let regions = data.ocrData.regions
+          regions.forEach(region => {
+            let lines = region.lines
+            lines.forEach(line => {
+              let words = line.words
+              words.forEach(word => {
+                this.setState({ ocrResult: this.state.ocrResult + word.text + ' '})
+              }) 
+            })
+          })
+          console.log(this.state.ocrResult)
+        })
+        .catch( err => console.log(err))
   };
 
   renderSnipButton = (onStartCapture) => {
@@ -69,7 +89,7 @@ class App extends Component {
 
       imgInput.addEventListener('change', (event) => {
         const formData = new FormData()
-        formData.append('myFile', event.target.files[0])
+        formData.append('image', event.target.files[0])
 
         fetch('http://localhost:5000/api/upload', {
           method: 'post',
@@ -122,7 +142,7 @@ class App extends Component {
       <ThemeProvider theme={theme} >
         <>
         <GlobalStyles />
-        <ScreenCapture onEndCapture={this.handleScreenCapture} >
+        <ScreenCapture onEndCapture={this.handleScreenCapture}>
           {({ onStartCapture }) => (
             <div className="App" onMouseMove={this.trackMouse}>
               <Navbar 
@@ -134,6 +154,7 @@ class App extends Component {
               <TranslationMenu 
                 media={this.state.capturedImg}
                 Buttons={this.state.isMobile ? [this.renderSnipButton(onStartCapture), this.renderLoadButton()] : ''}
+                ocrResult={this.state.ocrResult}
                 searchButton={searchButton}
                 trackSearchText={this.trackSearchText}
                 sourceText={this.state.sourceText}
