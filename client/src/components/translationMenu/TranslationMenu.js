@@ -42,7 +42,7 @@ const TranslationMenu = ({
       </div>
       <div className='translation-container'>
         <div className='translation-container-upper'>
-          <img src={media}></img><br></br>
+          <img src={media} alt=''></img><br></br>
           {displayOCR()}
         </div>
         <div className='search-bar'>

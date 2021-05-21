@@ -21,11 +21,8 @@ class App extends Component {
       ocrResult: null,
       sourceText: '',
       responseText: [],
-      testImages: [
-        './texts-in-italian-benigni.png',
-        './HeadInText.png',
-        './test-img.jpg'
-      ]
+      testImages: [],
+        // './texts-in-italian-benigni.png',
     }
   }
 
@@ -55,7 +52,7 @@ class App extends Component {
     fetch('http://localhost:5000/api/ocr', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify( {'image': this.state.capturedImg } ),
+          body: JSON.stringify({ 'image': this.state.capturedImg }),
         })
         .then( res => res.json())
         .then( data => {
@@ -81,7 +78,7 @@ class App extends Component {
   }
 
   renderLoadButton = (event) => {
-    return <Button Icon={FaSpinner} title='Load' for='imgFile' onClick={(event) => {
+    return <Button Icon={FaSpinner} title='Load' onClick={(event) => {
       const imgInput = document.createElement("input");
       imgInput.setAttribute('type', 'file');
       imgInput.setAttribute('accept', 'image/png, image/jpeg');
@@ -89,11 +86,11 @@ class App extends Component {
 
       imgInput.addEventListener('change', (event) => {
         const formData = new FormData()
-        formData.append('image', event.target.files[0])
+        formData.append("image", event.target.files[0])
 
         fetch('http://localhost:5000/api/upload', {
           method: 'post',
-          body: formData,
+          body: formData
         })
         .then( res => res.json())
         .then( data => this.setState({ testImages: [...this.state.testImages, `./img/image-${data.seed}.${data.ext}`] }))  
@@ -104,9 +101,6 @@ class App extends Component {
   }
 
   handleSearchRequest = () => {
-      //
-      // Make fetch request to translate API over here
-      //
     const url="http://localhost:5000";
     const endpoint="api";
     const cmd="translate";
@@ -161,7 +155,7 @@ class App extends Component {
                 responseText={this.state.responseText}
               />
               <MediaDisplay
-                media={this.state.testImages} 
+                media={this.state.testImages.length !== 0 ? this.state.testImages : ['./test-img.jpg']} 
               />
             
             </div>

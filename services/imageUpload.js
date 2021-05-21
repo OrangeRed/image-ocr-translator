@@ -39,8 +39,8 @@ const upload = multer({
   storage: storage,
 }).array('myFile', 1);
 
-router.post('/', async (req, res) => {
-  const img = req.files.myFile
+router.post(`/`, async (req, res) => {
+  const img = req.files.image
   const ext  = img.mimetype.split('/');
   const seed = uuid();
   const name = `image-${seed}.${ext[1]}`;
@@ -50,7 +50,5 @@ router.post('/', async (req, res) => {
     'ext': ext[1],
   })
 });
-
-
 
 export default router;

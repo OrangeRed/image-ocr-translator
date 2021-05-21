@@ -20,6 +20,7 @@ const GOOGLE_TRANSLATE_API_KEY = process.env.GOOGLE_TRANSLATE_API_KEY || "SAMPLE
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(fileupload());
 app.use(express.static('client'));
 
 // Route Middleware
