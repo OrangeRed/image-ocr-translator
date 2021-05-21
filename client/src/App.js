@@ -20,12 +20,8 @@ class App extends Component {
       isLoggedIn: false,
       sourceText: '',
       testImages: [
-      //   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
-      // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
-      // "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png",
-        './img/texts-in-italian-benigni.png',
-        // './HeadInText.png'
-      ]
+        './Tutorial_Image.png'
+]
     }
   }
 
