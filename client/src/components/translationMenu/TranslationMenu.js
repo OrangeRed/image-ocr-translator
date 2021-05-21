@@ -7,8 +7,16 @@ const TranslationMenu = ({
   searchButton,
   trackSearchText,
   sourceText,
+  ocrResult,
   ...props
 }) => {
+
+  const displayOCR = () => {
+    if(ocrResult === ''){
+      return <h3>No words were able to be parsed from this image</h3>
+    }
+    return <h3>{ocrResult}</h3>
+  }
 
   return (
     <StyledTranslationMenu {...props}>
@@ -18,6 +26,7 @@ const TranslationMenu = ({
       <div className='translation-container'>
         <div className='translation-container-upper'>
           <img src={media}></img><br></br>
+          {displayOCR()}
         </div>
         <div className='search-bar'>
           <input type='text' placeholder='Look up a word'   

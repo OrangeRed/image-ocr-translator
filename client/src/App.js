@@ -18,13 +18,15 @@ class App extends Component {
       isMobile: false,
       isDarkMode: true,
       isLoggedIn: false,
+      ocrResult: null,
       sourceText: '',
       testImages: [
       //   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
       // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
       // "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png",
         './texts-in-italian-benigni.png',
-        './HeadInText.png'
+        './HeadInText.png',
+        './test-img.jpg'
       ]
     }
   }
@@ -50,15 +52,30 @@ class App extends Component {
   }
 
   handleScreenCapture = (screenCapture) => {
-    // this.setState({ capturedImg: screenCapture });
+    this.setState({ capturedImg: screenCapture });
 
     fetch('http://localhost:5000/api/ocr', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify( {'image': screenCapture} ),
+          body: JSON.stringify( {'image': this.state.capturedImg } ),
         })
         .then( res => res.json())
-        .then( data => console.log(data))
+        .then( data => {
+          this.setState({ ocrResult: '' })
+          console.log(data)
+          let regions = data.ocrData.regions
+          regions.forEach(region => {
+            let lines = region.lines
+            lines.forEach(line => {
+              let words = line.words
+              words.forEach(word => {
+                this.setState({ ocrResult: this.state.ocrResult + word.text + ' '})
+              }) 
+            })
+          })
+          console.log(this.state.ocrResult)
+        })
+        .catch( err => console.log(err))
   };
 
   renderSnipButton = (onStartCapture) => {
@@ -81,7 +98,8 @@ class App extends Component {
           method: 'post',
           body: formData,
         })
-        .then( res => console.log(res.json()) ); 
+        .then( res => console.log(res.json()))
+        .catch( err => console.log(err))
 
         // this.setState({ testImages: [...this.state.testImages, userImg] });
 
@@ -120,7 +138,7 @@ class App extends Component {
       <ThemeProvider theme={theme} >
         <>
         <GlobalStyles />
-        <ScreenCapture onEndCapture={this.handleScreenCapture} >
+        <ScreenCapture onEndCapture={this.handleScreenCapture}>
           {({ onStartCapture }) => (
             <div className="App" onMouseMove={this.trackMouse}>
               <Navbar 
@@ -135,6 +153,7 @@ class App extends Component {
                 searchButton={searchButton}
                 trackSearchText={this.trackSearchText}
                 sourceText={this.state.sourceText}
+                ocrResult={this.state.ocrResult}
               />
               <MediaDisplay
                 media={this.state.testImages} 

@@ -45,6 +45,8 @@ router.post('/', async (req, res) => {
         fs.unlinkSync(filePath)
         return res.status(200).json({ status: 200, ocrData: result })
       }).catch((error) => {
+        // delete image after results have been acquired
+        fs.unlinkSync(filePath)
         return res.status(400).json({ status: 400, error: error.message })
       })
     })
