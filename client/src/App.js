@@ -19,12 +19,10 @@ class App extends Component {
       isDarkMode: true,
       isLoggedIn: false,
       sourceText: '',
+      responseText: [],
       testImages: [
-      //   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg/1200px-Blocksatz-Beispiel_deutsch%2C_German_text_sample_with_fully_justified_text.svg.png",
-      // "http://www.learnitaliandaily.com/en/wp-content/uploads/2014/08/texts-in-italian-benigni.png",
-      // "https://www.w3.org/TR/dpub-latinreq/images/HeadInText.png",
-        './img/texts-in-italian-benigni.png',
-        // './HeadInText.png'
+        './texts-in-italian-benigni.png',
+        './HeadInText.png'
       ]
     }
   }
@@ -86,10 +84,27 @@ class App extends Component {
   }
 
   handleSearchRequest = () => {
-    //
-    // Make fetch request to translate API over here
-    //
-    console.log(this.state.sourceText);
+      //
+      // Make fetch request to translate API over here
+      //
+    const url="http://localhost:5000";
+    const endpoint="api";
+    const cmd="translate";
+    const svc=["google", "myMemory"];
+    const src="es";
+    const tgt="en";
+    const data = this.state.sourceText;
+    if(data === ""){
+      return
+    }
+    this.setState({ responseText: [] });
+    svc.forEach( service => {
+      fetch(`${url}/${endpoint}/${cmd}/${service}/${src}/${tgt}/${data}`)
+        .then( response => response.json())
+        .then( text => {
+          this.setState({ responseText: [...this.state.responseText, text] });
+        });
+    })
   }
 
   trackSearchText = (text) => {
@@ -122,6 +137,7 @@ class App extends Component {
                 searchButton={searchButton}
                 trackSearchText={this.trackSearchText}
                 sourceText={this.state.sourceText}
+                responseText={this.state.responseText}
               />
               <MediaDisplay
                 media={this.state.testImages} 
