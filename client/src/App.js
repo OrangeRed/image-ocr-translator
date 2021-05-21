@@ -76,7 +76,7 @@ class App extends Component {
           body: formData,
         })
         .then( res => res.json())
-        .then( data => this.setState({ testImages: [...this.state.testImages, `./img/${data.seed}${event.target.files[0].name }`] }))  
+        .then( data => this.setState({ testImages: [...this.state.testImages, `./img/image-${data.seed}.${data.ext}`] }))  
       }) 
       imgInput.click();
     }}
