@@ -4,10 +4,9 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import fileupload from 'express-fileupload';
-import authRoute from './routes/auth.js';
-import postRoute from './routes/posts.js';
-import translateRoute from './services/translate.js';
-import uploadRoute from './services/imageUpload.js';
+import ocrRoute from './routes/ocr.js';
+import translateRoute from './routes/translate.js';
+import uploadRoute from './routes/imageUpload.js';
 
 dotenv.config();
 
@@ -24,16 +23,15 @@ app.use(express.static('client'));
 
 // Route Middleware
 const endpoint = 'api';
-app.use(`/${ endpoint }/user`, authRoute);
-app.use(`/${ endpoint }/posts`, postRoute);
 app.use(`/${ endpoint }/translate`, translateRoute);
 app.use(`/${ endpoint }/upload`, uploadRoute);
+app.use(`/${ endpoint }/ocr`, ocrRoute);
 
-// Handles any requests that don't match
-app.get('*', (_, res) => {
-  // TODO: Add a 404 not found page
-  res.sendFile('client/index.html', { root: '.' });
-});
+// // Handles any requests that don't match
+// app.get('*', (_, res) => {
+//   // TODO: Add a 404 not found page
+//   res.sendFile('client/index.html', { root: '.' });
+// });
 
 // Connect to Database
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -42,5 +40,3 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
   .catch((error) => console.log(error.message));
 
 mongoose.set('useFindAndModify', false);
-
-
