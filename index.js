@@ -4,11 +4,9 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import fileupload from 'express-fileupload';
-import authRoute from './routes/auth.js';
-import postRoute from './routes/posts.js';
 import ocrRoute from './routes/ocr.js';
-import translateRoute from './services/translate.js';
-import uploadRoute from './services/imageUpload.js';
+import translateRoute from './routes/translate.js';
+import uploadRoute from './routes/imageUpload.js';
 
 dotenv.config();
 
@@ -25,8 +23,6 @@ app.use(express.static('client'));
 
 // Route Middleware
 const endpoint = 'api';
-app.use(`/${ endpoint }/user`, authRoute);
-app.use(`/${ endpoint }/posts`, postRoute);
 app.use(`/${ endpoint }/translate`, translateRoute);
 app.use(`/${ endpoint }/upload`, uploadRoute);
 app.use(`/${ endpoint }/ocr`, ocrRoute);

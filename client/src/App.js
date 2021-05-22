@@ -7,7 +7,8 @@ import { FaCropAlt, FaSpinner, FaCog, FaSearch } from 'react-icons/fa'
 import Navbar from './components/navbar/Navbar';
 import TranslationMenu from './components/translationMenu/TranslationMenu';
 import MediaDisplay from './components/mediaDisplay/MediaDisplay';
-import Button from './components/button/Button'
+import Button from './components/button/Button';
+import SettingsButton from './components/settingsButton/SettingsButton';
 
 class App extends Component {
 
@@ -18,6 +19,8 @@ class App extends Component {
       isMobile: false,
       isDarkMode: true,
       isLoggedIn: false,
+      sourceLang: 'es',
+      targetLang: 'en',
       ocrResult: null,
       sourceText: '',
       responseText: [],
@@ -41,8 +44,18 @@ class App extends Component {
     this.setState({ isMobile, menuOpen })
   }
 
-  handleSettingsButton = (event) => {
-    console.log("Settings clicked")
+  handleSettingsButton = () => {
+    return <SettingsButton />
+  }
+
+  renderSettingsButton = () => {
+    return <SettingsButton 
+      Icon={FaCog} 
+      title={this.state.isMobile ? '' : 'Settings'} 
+      darkMode={(bool) => this.setState({ isDarkMode: bool })}
+      setSrcLang={(lang) => this.setState({ sourceLang: lang })}
+      setTgtLang={(lang) => this.setState({ targetLang: lang })}
+    />
   }
 
   handleScreenCapture = (screenCapture) => {
@@ -104,8 +117,8 @@ class App extends Component {
     const endpoint="api";
     const cmd="translate";
     const svc=["google", "myMemory"];
-    const src="es";
-    const tgt="en";
+    const src=this.state.sourceLang;
+    const tgt=this.state.targetLang;
     const data = this.state.sourceText;
     if(data === ""){
       return
@@ -127,8 +140,8 @@ class App extends Component {
   render() {
     const theme = this.state.isDarkMode ? darkTheme : lightTheme
 
-    const settingsButton = <Button Icon={FaCog} title='Settings' onClick={this.handleSettingsButton} key={2} />
-    const settingsMobileButton = <Button Icon={FaCog} onClick={this.handleSettingsButton} key={2} />
+    const settingsButton = <Button Icon={FaCog} title='Settings' onClick={this.handleSettingsButton} />
+    const settingsMobileButton = <Button Icon={FaCog} onClick={this.handleSettingsButton} />
     const searchButton = <Button Icon={FaSearch} title='' onClick={this.handleSearchRequest} />
 
     return (
@@ -141,7 +154,7 @@ class App extends Component {
               <Navbar 
                   loggedIn={this.state.isLoggedIn} 
                   Buttons={
-                    this.state.isMobile ? [settingsMobileButton] : [this.renderSnipButton(onStartCapture), this.renderLoadButton(), settingsButton]
+                    this.state.isMobile ? [this.renderSettingsButton()] : [this.renderSnipButton(onStartCapture), this.renderLoadButton(), this.renderSettingsButton()]
                   }   
               />
               <TranslationMenu 
