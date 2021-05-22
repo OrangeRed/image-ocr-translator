@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
   const data = req.body.image.split(',');
   const buff = new Buffer(data[1], 'base64');
   const seed = uuid();
-  const filePath = `./client/public/image-${seed}.png`
+  const filePath = `../client/public/image-${seed}.png`
 
   // Creates image from received dataURL
   fs.writeFileSync(filePath, buff);
