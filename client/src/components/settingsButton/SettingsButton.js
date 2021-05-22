@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyledSettingsButton } from './SettingsButton.styled'
 import useClickOutside from '../useClickOutside'
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
+import { FaAngleDown } from 'react-icons/fa'
 
 const SettingsButton = ({
   Icon, // Icon
@@ -50,9 +50,7 @@ const SettingsButton = ({
   )
 
   const arrowIcon = (
-    // isActive ?
      <FaAngleDown size='15px' className='title-icon' /> 
-    // : <FaAngleUp size='15px' className='title-icon' />
   )
 
   const langMap = {

@@ -140,8 +140,6 @@ class App extends Component {
   render() {
     const theme = this.state.isDarkMode ? darkTheme : lightTheme
 
-    const settingsButton = <Button Icon={FaCog} title='Settings' onClick={this.handleSettingsButton} />
-    const settingsMobileButton = <Button Icon={FaCog} onClick={this.handleSettingsButton} />
     const searchButton = <Button Icon={FaSearch} title='' onClick={this.handleSearchRequest} />
 
     return (
@@ -167,7 +165,7 @@ class App extends Component {
                 responseText={this.state.responseText}
               />
               <MediaDisplay
-                media={this.state.images.length !== 0 ? this.state.images : ['./img/tutorial-img.png']} 
+                media={this.state.images.length !== 0 ? [...this.state.images] : ['./img/tutorial-img.png']} 
               />
             
             </div>
