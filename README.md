@@ -16,55 +16,12 @@ cd image-ocr-translator
 
 To build the program, run the following:
 ```
-docker-compose up --build
+docker-compose up 
 ```
 
 After docker builds the website, it can be accessed via `http://localhost:3000/`
 
 <br/>
-
-## Installation without docker
-
-To access the project, run the following:
-```
-git clone --recursive git@github.com:OrangeRed/image-ocr-translator.git
-cd image-ocr-translator
-```
-
-Install dependencies for both the back-end and front-end:
-```
-cd /server
-npm install
-
-cd /client
-npm install
-```
-
-Configure environment variable:<br />
-Inside `/server` make a file called `.env`. Inside it should look something like this:
-```
-CONNECTION_URL = mongodb+srv://admin:password@cluster0.8fhqr.mongodb.net/<dbname>?retryWrites=true&w=majority
-PORT = 5000
-TOKEN_SECRET = sY1hgypILYUw870JWd4wV7TAIMU2K2V2YYKd9N266LpfFt4TmXEafOtlAOQZWlrMCH/H7idpEDyAtpfN
-AZURE_OCR_KEY = <AZURE_OCR_KEY>
-AZURE_OCR_ORIGIN = eastus
-```
-
-<br/>
-
-### Running the Server
-```
-cd server
-npm start
-```
-
-### Running the website
-```
-cd client
-npm start
-```
-Confirm the site is running by visiting `http://localhost:3000` in your web browser.
-
 <br/>
 
 ## Notes

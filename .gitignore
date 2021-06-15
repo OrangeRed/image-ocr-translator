@@ -1,6 +1,10 @@
 # dependencies
 node_modules
 
+#dockerfiles
+.dockerignore
+Dockerfile
+
 # testing
 /coverage
 
