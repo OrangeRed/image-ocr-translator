@@ -21,7 +21,7 @@ docker-compose up --build
 
 After docker builds the website, it can be accessed via `http://localhost:3000/`
 
-
+<br/>
 
 ## Installation without docker
 
