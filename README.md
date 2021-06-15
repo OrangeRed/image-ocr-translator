@@ -1,6 +1,8 @@
 # Transients - Image OCR Translator
 
-Upload Images / PDF files and allow the user to look up specific definitions or words.
+Upload Image files and extract words to look up their translations.
+
+Here is a [short demo](https://www.youtube.com/watch?v=_gAdCidpmvo) of the website in action.
 
 <br/>
 
@@ -12,27 +14,56 @@ git clone --recursive git@github.com:OrangeRed/image-ocr-translator.git
 cd image-ocr-translator
 ```
 
-Install dependencies:
-
+To build the program, run the following:
 ```
+docker-compose up --build
+```
+
+After docker builds the website, it can be accessed via `http://localhost:3000/`
+
+
+
+## Installation without docker
+
+To access the project, run the following:
+```
+git clone --recursive git@github.com:OrangeRed/image-ocr-translator.git
+cd image-ocr-translator
+```
+
+Install dependencies for both the back-end and front-end:
+```
+cd /server
+npm install
+
+cd /client
 npm install
 ```
 
 Configure environment variable:<br />
-Rename `.env.example` file to `.env` and replace all text in brackets (inclusive). It should look something like this:
+Inside `/server` make a file called `.env`. Inside it should look something like this:
 ```
 CONNECTION_URL = mongodb+srv://admin:password@cluster0.8fhqr.mongodb.net/<dbname>?retryWrites=true&w=majority
 PORT = 5000
-TOKEN_SECRET = zY1hgypILYUw870JWd4wV7TAIMU2K2V9ZYKd9N266LpfFt4TmXEafOtlAOQZWlrMCL
+TOKEN_SECRET = sY1hgypILYUw870JWd4wV7TAIMU2K2V2YYKd9N266LpfFt4TmXEafOtlAOQZWlrMCH/H7idpEDyAtpfN
+AZURE_OCR_KEY = <AZURE_OCR_KEY>
+AZURE_OCR_ORIGIN = eastus
 ```
 
 <br/>
 
-## Running the Project
+### Running the Server
 ```
+cd server
 npm start
 ```
-Confirm the server is running by visiting `http://localhost:5000` in your web browser.
+
+### Running the website
+```
+cd client
+npm start
+```
+Confirm the site is running by visiting `http://localhost:3000` in your web browser.
 
 <br/>
 
